@@ -1,0 +1,28 @@
+
+
+<form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off" >
+  <div class="form-group">
+    <label>NAME</label>
+    <input name="Name" #Name="ngModel" [(ngModel)]="service.formData.Name" class="form-control" required>
+    <div class="validation-error" *ngIf="Name.invalid && Name.touched">This field is required</div>
+     <label></label>
+    <input name="Id" #Id="ngModel" [(ngModel)]="service.formData.Id" class="form-control" hidden>
+    <label>Description</label>
+    <input name="Description" #Description="ngModel" [(ngModel)]="service.formData.Description" class="form-control">
+    <label>Rating</label>
+    <input name="Rating" #Rating="ngModel" [(ngModel)]="service.formData.Rating" class="form-control">
+    <label>Genre</label>
+    <!-- <input list="Genre_Id" name="Genre_Id" #Genre_Id="ngModel" [(ngModel)]="service.formData.Genre_Id" class="form-control"> -->
+     <select id="Genre_Id" list="Genre_Id" name="Genre_Id" #Genre_Id="ngModel" [(ngModel)]="service.formData.Genre_Id" class="form-control">
+      
+      <option  *ngFor="let a of service.listGenre" value="{{a.Id}}">{{a.Name}}</option>
+     </select>
+     <label>Date Released</label>
+     <input type="date" name="DateReleased" #DateReleased="ngModel" [(ngModel)]="service.formData.DateReleased" class="form-control">
+ 
+      
+  </div>
+  <div class="form-group">
+    <button type="submit" [disabled]="form.invalid" class="btn btn-lg-btn-block">submit</button>
+  </div>
+</form>
